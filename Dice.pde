@@ -1,10 +1,18 @@
 void setup()
 {
 	noLoop();
+	textAlign(CENTER,CENTER);
+	size(300, 300);
 }
 void draw()
 {
-	//your code here
+	background(197);
+	for(int y = 10; y <=180; y+= 60) {
+		for(int x = 10; x <=180; x+=60 ) {
+			Die d1 = new Die(x, y);
+			d1.show();
+		}
+	}
 }
 void mousePressed()
 {
@@ -12,18 +20,48 @@ void mousePressed()
 }
 class Die //models one single dice cube
 {
-	//variable declarations here
-	
+	int myX, myY, num;
 	Die(int x, int y) //constructor
 	{
-		//variable initializations here
+		myX = x;
+		myY = y;
+
 	}
 	void roll()
 	{
-		//your code here
+		num = (int)(Math.random()*6+1);
 	}
 	void show()
 	{
-		//your code here
+		roll();
+		rect(myX, myY, 50, 50, 10);
+		fill(0);		
+		if(num == 1) {
+			ellipse(myX+25, myY+25, 10, 10);
+		}
+		if(num == 2) {
+			ellipse(myX+15, myY+15, 10, 10);
+			ellipse(myX+35, myY+35, 10, 10);
+		}
+		if(num == 3) {
+			ellipse(myX+15, myY+15, 10, 10);
+			ellipse(myX+25, myY+25, 10, 10);
+			ellipse(myX+35, myY+35, 10, 10);
+		}
+		if(num == 4) {
+			ellipse(myX+15, myY+15, 10, 10);
+			ellipse(myX+35, myY+35, 10, 10);
+			ellipse(myX+15, myY+35, 10, 10);
+			ellipse(myX+35, myY+15, 10, 10);
+		}
+		if(num == 5) {
+			ellipse(myX+25, myY+25, 10, 10);
+		}
+		if(num == 6) {
+			ellipse(myX+25, myY+25, 10, 10);
+		}
+		text(num, myX, myY);
+		fill(255);
+
 	}
 }
