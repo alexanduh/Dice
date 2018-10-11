@@ -1,21 +1,30 @@
+int total = 0;
+int curTotal = 0;
 void setup()
 {
 	noLoop();
 	textAlign(CENTER,CENTER);
 	size(800, 600);
+	textSize(32);
 }
 void draw()
 {
 	background(197);
-	for(int y = 10; y <=600; y+= 60) {
+	for(int y = 10; y <=540; y+= 60) {
 		for(int x = 10; x <=780; x+=60 ) {
 			Die d1 = new Die(x, y);
 			d1.show();
+
+			total += d1.num;
+			curTotal += d1.num;
 		}
 	}
+	text("total sum: " + total, 150, 550);
+	text("current total: " + curTotal, 150, 580);
 }
 void mousePressed()
 {
+	curTotal = 0;
 	redraw();
 }
 class Die //models one single dice cube
@@ -69,7 +78,6 @@ class Die //models one single dice cube
 			ellipse(myX+25, myY+35, 10, 10);
 			ellipse(myX+40, myY+35, 10, 10);
 		}
-		text(num, myX, myY);
 		fill(255);
 
 	}
